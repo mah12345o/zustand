@@ -1,11 +1,22 @@
-import { create } from "zustand";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const bookStore = (set, get) => ({
-  stateupdate: false,
-  toggleSidebar: () => set((state) => ({ stateupdate: !state.stateupdate, })),
-
-});
-
-const useBookStore = create(bookStore);
+const useBookStore = create(persist(
+  (set, get) => ({
+    stateupdate:  JSON.parse(localStorage.getItem('book-store-storage')) || [],
+    toggleSidebar: (additem) => set((state) => ({
+      stateupdate: [...state.stateupdate, { ...additem }],
+    })),
+    removeUser: (removeitem) => set((state) => ({
+      stateupdate:state.stateupdate.filter((item) => item.First !== removeitem),
+    })),
+  }),
+  {
+    name: 'book-store-storage', 
+    getStorage: () => localStorage,
+    serialize: (state) => JSON.stringify(state),
+    deserialize: (str) => JSON.parse(str),
+  }
+));
 
 export default useBookStore;

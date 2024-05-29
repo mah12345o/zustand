@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Sidebar from "./component/navbar/page";
-import ZustandFile from "./component/zustand";
+// import ZustandFile from "./component/zustand";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-slate-200">
-        <Sidebar/>{ZustandFile}test
-        <div className={`${ZustandFile?"ml-[180px]":"ml-[170px]"} p-6  pt-12`}>
+        <Sidebar/>
+        <div className="ml-[150px] p-6  pt-12">
         {children}
         </div>
         </body>
