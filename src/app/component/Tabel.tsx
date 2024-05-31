@@ -39,7 +39,7 @@ const UserTabel = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {userListing?.map((el) => (
+          {userListing?.map((el ) => (
             <TableRow>
               <TableCell className="font-medium">{el?.First}</TableCell>
               <TableCell>{el?.Last}</TableCell>

@@ -1,9 +1,12 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
+
 const useBookStore = create(persist(
   (set, get) => ({
-    stateupdate:  JSON.parse(localStorage.getItem('book-store-storage')) || [],
+    const localstate =  JSON.parse(localStorage.getItem('book-store-storage')) || [],
+    const value = typeof localstate ==="string" || ''
+    stateupdate: value
     toggleSidebar: (additem) => set((state) => ({
       stateupdate: [...state.stateupdate, { ...additem }],
     })),
